@@ -1,9 +1,30 @@
-import React from 'react'
+import React from 'react';
+import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, DateTime, Legend, Tooltip, LineSeries } from '@syncfusion/ej2-react-charts';
+import { lineCustomSeries, LinePrimaryXAxis,LinePrimaryYAxis } from '../../data/dummy';
+import { useStateContext } from '../../context/ContextProvider';
 
-const lineCharts = () => {
+const LineChart = () => {
+  const { currentMode } = useStateContext()
   return (
-    <div>lineCharts</div>
+    <ChartComponent
+    id='line-chart'
+    primaryXAxis={LinePrimaryXAxis}
+    primaryYAxis={LinePrimaryYAxis}
+    chartArea={{border:{width:0}}}
+    tooltip={{enable:true}}
+    background={currentMode === 'Dark' ? '#33373E' : '#fff'}
+    
+    >
+      <Inject services={[LineSeries,DateTime, Legend,Tooltip]}/>
+      <SeriesCollectionDirective>
+        {
+          lineCustomSeries.map((item,index) => 
+            <SeriesDirective key={index} {...item}/>
+          )
+        }
+      </SeriesCollectionDirective>
+    </ChartComponent>
   )
 }
 
-export default lineCharts
+export default LineChart
