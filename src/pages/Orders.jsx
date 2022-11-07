@@ -13,9 +13,10 @@ const Orders = () => {
       dataSource={ordersData}
       allowPaging
       allowSorting
-      // allowExcelExport
-      // allowFiltering
-      // allowPdfExport
+       allowExcelExport
+       allowFiltering
+       allowPdfExport
+      allowResizing
       
       >
       <ColumnsDirective>
